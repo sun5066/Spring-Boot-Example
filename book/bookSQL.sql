@@ -12,3 +12,8 @@ VALUES('자바의 정석', '도우출판', '남궁성', 30000);
 
 INSERT INTO tbl_book(title, author, comp, price)
 VALUES('열혈자바', '오랜지북', '윤성우', 30000);
+
+SELECT * FROM tbl_book;
+
+show create table tbl_book;
+drop table tbl_book;
