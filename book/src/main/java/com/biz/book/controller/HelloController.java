@@ -22,10 +22,10 @@ public class HelloController {
         this.bookService = bookService;
     }
 
-    @ResponseBody
+//    @ResponseBody
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String hello() {
-        return "Hi";
+        return "home";
     }
 
     //    @RequestMapping(value = "/home", method = RequestMethod.GET)

@@ -1,3 +1,4 @@
+<th:block th:include="header"/>
 <body class="book-List" xmlns:th="http://www.w3.org/1999/xhtml">
 <table>
     <tr>
@@ -19,5 +20,6 @@
         <td th:text="*{price}">가격</td>
     </tr>
 </table>
-
+<th:block th:include="pagination"/>
+<a href="/book/insert">추가</a>
 </body>

@@ -1,3 +1,7 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
     * {
         margin: 0;
@@ -5,7 +9,7 @@
     }
 
     header.main-header {
-        background-color: green;
+        background-color: green !important;
         color: white;
         text-align: center;
         font-weight: bold;
@@ -34,6 +38,21 @@
         color: black;
     }
 </style>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("nav.main-nav ul").addEventListener("click", function (e) {
+            const text = e.target.firstChild.nodeValue
+            // const className = e.target.className
+            if (text === "Home") {
+                document.location.href = "/"
+            } else if (text === "도서정보") {
+                document.location.href = "/book/list"
+            } else if (text === "자유게시판") {
+                document.location.href = "/"
+            }
+        })
+    })
+</script>
 <header class="main-header">
     <h2>BOOK 2020</h2>
     <p>나의 도서정보 관리</p>

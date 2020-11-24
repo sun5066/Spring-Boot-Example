@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<th:block th:include="header"/>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("div.button-box").addEventListener("click", function (e) {
@@ -15,11 +10,12 @@
                     document.location.replace(`/book/delete/${id}`)
                 }
             }
-            // alert(className + ":" + id)
+            if (className === "btn-update") {
+                document.location.href = `/book/update/${id}`
+            }
         })
     })
 </script>
-<body>
 <ul th:object="${BOOK}">
     <li th:text="*{title}">도서명</li>
     <li th:text="*{author}">저자</li>
@@ -30,5 +26,3 @@
     <button class="btn-update" th:data-id="${BOOK.id}">수정</button>
     <button class="btn-delete" th:data-id="${BOOK.id}">삭제</button>
 </div>
-</body>
-</html>

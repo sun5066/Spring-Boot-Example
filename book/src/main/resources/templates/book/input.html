@@ -1,0 +1,88 @@
+<th:block th:include="header" xmlns:th="http://www.w3.org/1999/xhtml"/>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("btn-save").addEventListener("click", function (e) {
+        });
+
+        document.addEventListener("submit", function (e) {
+            e.stopPropagation();
+            // 유효성 검사를 할때 return false, stopPropagation 이 작동을 안할때
+            e.preventDefault();
+
+            const title = document.querySelector("#title");
+            const author = document.querySelector("#author");
+            const comp = document.querySelector("#comp");
+            const price = document.querySelector("#price");
+
+            if (title.value === "") {
+                alert("도서명은 반드시 입력해야 합니다");
+                title.focus();
+                return false;
+            }
+            if (author.value === "") {
+                alert("저자명은 반드시 입력해야 합니다");
+                author.focus();
+                return false;
+            }
+            /*
+            * VO의 숫자형 필드의 경우
+            * 값이 비어있는 채로 서버로 submit 되면
+            * 400 오류가 발생해서
+            * 컨트롤러에서는 이 에러를 catch 하지 못한다.
+            * 그렇기 때문에 화면단에서 유효성 체크를 해줘야만 한다.
+            * */
+            if (!price.value) {
+                alert("가격은 반드시 0 보다 큰값을 입력해야 합니다");
+                price.focus();
+                return false;
+            }
+            // 유효성 검사가 모두 완료되면 서버로 데이터를 전송
+            document.querySelector("form").submit();
+            return false;
+        });
+    });
+</script>
+<style>
+    form#input-form {
+        width: 80%;
+        margin: 10px auto;
+    }
+
+    form#input-form div {
+        display: flex;
+    }
+
+    form#input-form label {
+        flex: 1;
+        text-align: right;
+        margin: 5px;
+        padding: 8px;
+    }
+
+    form#input-form input {
+        flex: 3;
+        margin: 5px;
+        padding: 8px;
+    }
+</style>
+<form method="POST" id="input-form" action="/book/insert" th:object="${BOOK}">
+    <div>
+        <label>도서명</label>
+        <input name="title" id="title" th:value="*{title}"/>
+    </div>
+    <div>
+        <label>저자</label>
+        <input name="author" id="author" th:value="*{author}"/>
+    </div>
+    <div>
+        <label>출판사</label>
+        <input name="comp" id="comp" th:value="*{comp}"/>
+    </div>
+    <div>
+        <label>가격</label>
+        <input type="number" name="price" id="price" th:value="*{price}"/>
+    </div>
+    <div>
+        <input type="submit" id="btn-save" value="저장"/>
+    </div>
+</form>
